@@ -5,7 +5,7 @@ public class Personnage {
     // **************************************************************************
     // **************************************************************************
     // **************************************************************************
-    // <editor-fold defaultstate="collapsed" desc="Attributs">
+    // <editor-fold desc="Attributs">
     // TODO : Mettre vos attributs ici
         
     String nom;
