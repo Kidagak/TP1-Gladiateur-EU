@@ -15,8 +15,8 @@ public class JeuGladiateurs {
     // <editor-fold defaultstate="expanded" desc="Instanciation des objets">
     CompteurDeTour tour = new CompteurDeTour();
     AffichageEcran affichage = new AffichageEcran();
-    Personnage Bob = new Personnage("Bob le malchanceux", 70, 15, 15, 15);
-    Personnage Igor = new Personnage("Igor l'empaleur",100,25,5,30);
+    Personnage Bob = new Personnage("Bob le malchanceux", 15, 15, 70, 15);
+    Personnage Igor = new Personnage("Igor l'empaleur",25,5,100,30);
     // </editor-fold>
     
 
@@ -37,7 +37,40 @@ public class JeuGladiateurs {
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Mécanique de combat">
     // TODO : La boucle contenant les étapes du combat
+    
+        while(Bob.getPointDeVie() > 0 && Igor.getPointDeVie() > 0){
+            
+            tour.afficheTour();
+
+            for (int i = 0; i < 100; i++) {
+
+                if (Bob.getInitiative() == i) {
+                    Bob.frapperPersonnage(Igor);
+                }
+
+                if (Igor.getInitiative() == i) {
+                    Igor.frapperPersonnage(Bob);
+                }
+            }
+
+            affichage.afficherSeparateurInfosPerso();
+            Bob.afficherInfosPersonnage();
+            Igor.afficherInfosPersonnage();
+            Bob.setNewInitiativeRandom();
+            Igor.setNewInitiativeRandom();
+            tour.augmenteTour();
+            affichage.afficherSeparateurDeTour();
+        }
+    
+    
     // TODO : Après la boucle, afficher le résultat du combat
+    
+    
+    
+    
+    
+    
+    
     
     // ************************ CODE TEMPORAIRE ***************************
     
