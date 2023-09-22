@@ -4,6 +4,7 @@ import personnages.Personnage;
 import combat.CompteurDeTour;
 import combat.AffichageEcran;
 
+
 public class JeuGladiateurs {
 
     public static void main(String[] args) {
@@ -39,6 +40,7 @@ public class JeuGladiateurs {
     // TODO : Après la boucle, afficher le résultat du combat
     
     // ************************ CODE TEMPORAIRE ***************************
+    Bob.frapperPersonnage(Igor);
     
     
     // </editor-fold>

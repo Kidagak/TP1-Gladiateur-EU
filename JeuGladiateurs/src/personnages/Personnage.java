@@ -133,6 +133,29 @@ public class Personnage {
         // TODO : Récupérer la valeur d'attaque pour ce tour, calculer les dégats,
         //modifier les points de vie du personnage cible, afficher les détails
         // sur l'attaque, tel que montré dans l'énoncé.
+        int forceDeFrappe;
+        int valeurDeDefence;
+        int dommages;
+        
+        forceDeFrappe = attaqueCalcul();
+        valeurDeDefence = personnageCible.valeurDefense;
+        dommages = forceDeFrappe - valeurDeDefence;
+        
+        if (dommages < 0) {
+            dommages =0;
+        }
+        
+        personnageCible.pointDeVie -= dommages;
+        
+        if (personnageCible.pointDeVie < 0) {
+            personnageCible.pointDeVie =0;
+        }
+        
+        System.out.println();
+        System.out.println(this.nom + " attaque avec une puissance de : " + forceDeFrappe);
+        System.out.println(personnageCible.nom + " a une defense de : " + valeurDeDefence);
+        System.out.println("Les dommages sont donc de : " + dommages);
+
     }
 
     public void setNewInitiativeRandom() {
