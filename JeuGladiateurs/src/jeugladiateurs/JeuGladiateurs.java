@@ -61,7 +61,8 @@ public class JeuGladiateurs {
             tour.augmenteTour();
             affichage.afficherSeparateurDeTour();
         }
-    
+        
+        affichage.afficheVictoire(Bob, Igor);
     
     // TODO : Après la boucle, afficher le résultat du combat
     
