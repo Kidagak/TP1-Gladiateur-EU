@@ -87,7 +87,8 @@ public class Mirmillon extends Personnage{
         return rand.nextInt(valeurMaxAttaque - 0) + 0;
     }
 
-    public void frapperPersonnage(Mirmillon personnageCible) {
+    @Override
+    public void frapperPersonnage(Personnage personnageCible) {
         // TODO : Récupérer la valeur d'attaque pour ce tour, calculer les dégats,
         //modifier les points de vie du personnage cible, afficher les détails
         // sur l'attaque, tel que montré dans l'énoncé.
@@ -103,16 +104,38 @@ public class Mirmillon extends Personnage{
             dommages =0;
         }
         
-        personnageCible.pointDeVie -= dommages;
+        for (int i = 1; i <= 2; i++) {
+            
+            if (i == 2 && personnageCible.pointDeVie == 0) {
+                System.out.println();
+                System.out.println(this.nom +" decapite " + personnageCible.nom);
+                break;
+            }else if (i == 2)
+            {
+                System.out.println();
+                System.out.println(this.nom +" attaque a nouveau" );  
+            }
+            
+            personnageCible.pointDeVie -= dommages;
         
-        if (personnageCible.pointDeVie < 0) {
-            personnageCible.pointDeVie =0;
+            if (personnageCible.pointDeVie < 0) {
+                personnageCible.pointDeVie =0;
+            }
+            
+            System.out.println();
+            System.out.println(this.nom + " attaque avec une puissance de : " + forceDeFrappe);
+            System.out.println(personnageCible.nom + " a une defense de : " + valeurDeDefence);
+            System.out.println("Les dommages sont donc de : " + dommages);
+            
+            
+            
         }
         
-        System.out.println();
-        System.out.println(this.nom + " attaque avec une puissance de : " + forceDeFrappe);
-        System.out.println(personnageCible.nom + " a une defense de : " + valeurDeDefence);
-        System.out.println("Les dommages sont donc de : " + dommages);
+        
+        
+        
+        
+        
 
     }
 
@@ -120,7 +143,7 @@ public class Mirmillon extends Personnage{
     public void setNewInitiativeRandom() {
         // TODO : Modifier de façon aléatoire la valeur INI du personnage.
         Random rand = new Random();
-        this.initiative =rand.nextInt(100 - 0) + 0;
+        this.initiative =rand.nextInt(30 - 0) + 0;
     }
     // </editor-fold>
 }
