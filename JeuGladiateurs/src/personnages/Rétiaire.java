@@ -8,7 +8,7 @@ public class Rétiaire extends Personnage{
     // **************************************************************************
     // <editor-fold desc="Attributs">
     // TODO : Mettre vos attributs ici
-        
+       boolean filet = true;
    
     
     // </editor-fold>
@@ -57,30 +57,7 @@ public class Rétiaire extends Personnage{
     // **************************************************************************
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Mécanique de jeu">
-    @Override
-    public void afficherInfosPersonnage() {
-        // TODO : Afficher les infos du personnage, tel que montré dans l'énoncé
-        
-        System.out.println();
-        
-        System.out.println(nom);
-        System.out.println("\tAttaque : " + valeurMaxAttaque );
-        System.out.println("\tDefense : " + valeurDefense );
-        System.out.println("\tPoint de vie : " + pointDeVie );
-        System.out.println("\tInitiative : " + initiative );
-        
-        
-        
-        if (pointDeVie <=0) {
-            System.out.println("\tStatut : Mort" );
-
-        }else{
-            System.out.println("\tStatut : Vivant" );
-
-        }
-        
-        
-    }
+    
 
     private int attaqueCalcul() {
         // TODO : Retourner la valeur de l'attaque du personnage.
@@ -89,33 +66,56 @@ public class Rétiaire extends Personnage{
         return rand.nextInt(valeurMaxAttaque - 0) + 0;
     }
 
-    public void frapperPersonnage(Rétiaire personnageCible) {
+       @Override
+    public void frapperPersonnage(Personnage personnageCible) {
         // TODO : Récupérer la valeur d'attaque pour ce tour, calculer les dégats,
         //modifier les points de vie du personnage cible, afficher les détails
         // sur l'attaque, tel que montré dans l'énoncé.
         int forceDeFrappe;
         int valeurDeDefence;
         int dommages;
+        int touche;
         
-        forceDeFrappe = attaqueCalcul();
-        valeurDeDefence = personnageCible.valeurDefense;
-        dommages = forceDeFrappe - valeurDeDefence;
-        
-        if (dommages < 0) {
-            dommages =0;
-        }
-        
-        personnageCible.pointDeVie -= dommages;
-        
-        if (personnageCible.pointDeVie < 0) {
-            personnageCible.pointDeVie =0;
-        }
-        
-        System.out.println();
-        System.out.println(this.nom + " attaque avec une puissance de : " + forceDeFrappe);
-        System.out.println(personnageCible.nom + " a une defense de : " + valeurDeDefence);
-        System.out.println("Les dommages sont donc de : " + dommages);
+        if (filet) {
+            System.out.println();
+            System.out.println(this.nom + " lance son filet");
+            filet = false;
+            
+            Random rand = new Random();
+            touche = rand.nextInt(100 - 1) + 1;
+            if (touche <= 10) {
+                System.out.println();
+                System.out.println("Son filet attrape " + personnageCible +" et il l'empale sauvagement avec sa lance");
+            } else {
+                System.out.println();
+                System.out.println("Le filet n'atteint pas sa cible");
+            }
+            
+        } else {
+            
+            forceDeFrappe = attaqueCalcul();
+            valeurDeDefence = personnageCible.valeurDefense;
+            dommages = forceDeFrappe - valeurDeDefence;
 
+            if (dommages < 0) {
+                dommages =0;
+            }
+
+            personnageCible.pointDeVie -= dommages;
+
+            if (personnageCible.pointDeVie < 0) {
+                personnageCible.pointDeVie =0;
+            }
+            
+            System.out.println();
+            System.out.println(this.nom + " ramasse son filet et en profite pour attaquer");
+            this.filet = true;
+            System.out.println();
+            System.out.println(this.nom + " attaque avec une puissance de : " + forceDeFrappe);
+            System.out.println(personnageCible.nom + " a une defense de : " + valeurDeDefence);
+            System.out.println("Les dommages sont donc de : " + dommages);
+
+        }
     }
 
     @Override
